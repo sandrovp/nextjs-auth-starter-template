@@ -1,20 +1,113 @@
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.background {
-  overflow: hidden;
-  background: #f8f8f8;
-  background-image: repeating-linear-gradient(0deg, transparent, transparent 11px, #f2f2f2 11px, #f2f2f2 12px),
-    repeating-linear-gradient(90deg, transparent, transparent 11px, #f2f2f2 11px, #f2f2f2 12px);
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
 }
 
-.mask {
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 40px,
-    rgba(0, 0, 0, 1) calc(100% - 20px),
-    rgba(0, 0, 0, 0) 100%
-  );
+:root {
+  --colorlabel: rgba(8, 27, 47, 0.6);
+  --cor-fundo-nav: rgba(6, 27, 46, 1);
+  --cor-fundo-content: #EFF3FA;
+  --cor-seottulo: rgba(6, 27, 46, 1);
+  --cor-textogeral: rgba(6, 27, 46, 0.9);
+  --efeito-logovre: 0px 0px 8.699999809265137px 0px rgba(255, 255, 255, 0.25);
+  --secondary-primary-white: rgba(255, 255, 255, 1);
+  --tipography-label-font-family: "Inter", Helvetica;
+  --tipography-label-font-size: 16px;
+  --tipography-label-font-style: normal;
+  --tipography-label-font-weight: 500;
+  --tipography-label-letter-spacing: -0.32px;
+  --tipography-label-line-height: 150%;
+  --typography-body-base-font-family: "Inter", Helvetica;
+  --typography-body-base-font-size: 16px;
+  --typography-body-base-font-style: normal;
+  --typography-body-base-font-weight: 500;
+  --typography-body-base-letter-spacing: -0.32px;
+  --typography-body-base-line-height: 150%;
+  --typography-body-negrito-font-family: "Inter", Helvetica;
+  --typography-body-negrito-font-size: 16px;
+  --typography-body-negrito-font-style: normal;
+  --typography-body-negrito-font-weight: 700;
+  --typography-body-negrito-letter-spacing: -0.32px;
+  --typography-body-negrito-line-height: 24px;
+  --typography-body-sm-font-family: "Inter", Helvetica;
+  --typography-body-sm-font-size: 13px;
+  --typography-body-sm-font-style: normal;
+  --typography-body-sm-font-weight: 500;
+  --typography-body-sm-letter-spacing: -0.26px;
+  --typography-body-sm-line-height: 150%;
+  --typography-bot-o-font-family: "Poppins", Helvetica;
+  --typography-bot-o-font-size: 24px;
+  --typography-bot-o-font-style: normal;
+  --typography-bot-o-font-weight: 600;
+  --typography-bot-o-letter-spacing: 0px;
+  --typography-bot-o-line-height: 150%;
+  --typography-destaque-font-family: "DM Sans", Helvetica;
+  --typography-destaque-font-size: 12px;
+  --typography-destaque-font-style: normal;
+  --typography-destaque-font-weight: 700;
+  --typography-destaque-letter-spacing: -0.24px;
+  --typography-destaque-line-height: 28px;
+  --typography-heading-bold-font-family: "Poppins", Helvetica;
+  --typography-heading-bold-font-size: 40px;
+  --typography-heading-bold-font-style: normal;
+  --typography-heading-bold-font-weight: 700;
+  --typography-heading-bold-letter-spacing: -0.8px;
+  --typography-heading-bold-line-height: 42px;
+  --typography-heading-l-regular-font-family: "Poppins", Helvetica;
+  --typography-heading-l-regular-font-size: 39px;
+  --typography-heading-l-regular-font-style: normal;
+  --typography-heading-l-regular-font-weight: 500;
+  --typography-heading-l-regular-letter-spacing: -0.78px;
+  --typography-heading-l-regular-line-height: 100%;
+  --typography-heading-se-o-font-family: "Inter", Helvetica;
+  --typography-heading-se-o-font-size: 24px;
+  --typography-heading-se-o-font-style: normal;
+  --typography-heading-se-o-font-weight: 600;
+  --typography-heading-se-o-letter-spacing: -0.48px;
+  --typography-heading-se-o-line-height: 32px;
+  --typography-heading-xl-bold-font-family: "Poppins", Helvetica;
+  --typography-heading-xl-bold-font-size: 45px;
+  --typography-heading-xl-bold-font-style: normal;
+  --typography-heading-xl-bold-font-weight: 700;
+  --typography-heading-xl-bold-letter-spacing: -0.9px;
+  --typography-heading-xl-bold-line-height: 150%;
+  --typography-heading-xl-regular-font-family: "Poppins", Helvetica;
+  --typography-heading-xl-regular-font-size: 49px;
+  --typography-heading-xl-regular-font-style: normal;
+  --typography-heading-xl-regular-font-weight: 500;
+  --typography-heading-xl-regular-letter-spacing: -0.98px;
+  --typography-heading-xl-regular-line-height: 150%;
+  --typography-nome-font-family: "Inter", Helvetica;
+  --typography-nome-font-size: 24px;
+  --typography-nome-font-style: normal;
+  --typography-nome-font-weight: 500;
+  --typography-nome-letter-spacing: -0.48px;
+  --typography-nome-line-height: 24px;
+  --typography-r-tulo-indicador-font-family: "Space Grotesk", Helvetica;
+  --typography-r-tulo-indicador-font-size: 24px;
+  --typography-r-tulo-indicador-font-style: normal;
+  --typography-r-tulo-indicador-font-weight: 500;
+  --typography-r-tulo-indicador-letter-spacing: -0.48px;
+  --typography-r-tulo-indicador-line-height: 42px;
+  --typography-r-tulo-indicadorpequeno-font-family: "Space Grotesk", Helvetica;
+  --typography-r-tulo-indicadorpequeno-font-size: 20px;
+  --typography-r-tulo-indicadorpequeno-font-style: normal;
+  --typography-r-tulo-indicadorpequeno-font-weight: 500;
+  --typography-r-tulo-indicadorpequeno-letter-spacing: -0.4px;
+  --typography-r-tulo-indicadorpequeno-line-height: 32px;
+  --typography-subt-tulo-dashboard-font-family: "Poppins", Helvetica;
+  --typography-subt-tulo-dashboard-font-size: 24px;
+  --typography-subt-tulo-dashboard-font-style: normal;
+  --typography-subt-tulo-dashboard-font-weight: 500;
+  --typography-subt-tulo-dashboard-letter-spacing: 0px;
+  --typography-subt-tulo-dashboard-line-height: 24px;
+  --typographyttulocartoindicador: var(--variable-collection-azul-1-semi);
+  --variable-collection-azul-1-semi: rgba(8, 27, 47, 0.6);
+  --variable-collection-cor-fundo-bot-oprim-rio: rgba(8, 27, 47, 1);
+  --variable-collection-gap-se-o: 32px;
+  --variable-collection-padding-se-o: 32px;
 }

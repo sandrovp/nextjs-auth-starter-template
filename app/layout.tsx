@@ -3,10 +3,11 @@ import "./globals.css";
 import Script from "next/script";
 import { Metadata } from "next";
 import localFont from "next/font/local";
+import { Poppins } from 'next/font/google';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clerk-next-app.vercel.app/"),
-  title: "Next.js Clerk Template",
+  title: "VRE",
   description:
     "A simple and powerful Next.js template featuring authentication and user management powered by Clerk.",
   openGraph: { images: ["/og.png"] },
@@ -22,13 +23,19 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
 });
 
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: "--font-poppins",
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}>
       <ClerkProvider
         appearance={{
           variables: { colorPrimary: "#000000" },
@@ -46,7 +53,7 @@ export default function RootLayout({
           },
         }}
       >
-        <body className={`min-h-screen flex flex-col antialiased`}>
+        <body className={`min-h-screen flex flex-col antialiased bg-gray-400`}>
           {children}
         </body>
       </ClerkProvider>
