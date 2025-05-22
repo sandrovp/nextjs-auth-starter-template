@@ -25,7 +25,7 @@ export function Sidebar() {
 
       {/* Menu */}
       <div className="flex flex-col gap-4">
-        <MenuItem icon={icon_carteira} text="Carteira" href="/" />
+        <MenuItem icon={icon_carteira} text="Carteira" href="/ " />
         <MenuItem icon={icon_portfolio} text="Portfólio" href="/portfolio" />
         <MenuItem icon={icon_documentos} text="Documentos" href="/documentos" />
         <MenuItem icon={icon_oportunidades} text="Oportunidades" href="/oportunidades" />

@@ -39,7 +39,15 @@ export default function InvestimentosDonutChart({ data }: Props) {
                         cornerRadius={4}
                     >
                         {chartData.map((_, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            <Cell key={`cell-${index}`} fill={[
+                                '#081B2F',
+                                '#4A6886',
+                                '#6B89A7',
+                                '#8FABC9',
+                                '#B3CDED',
+                                '#D6E5F2',
+                                '#E8F1F8'
+                            ][index % 7]} />
                         ))}
                     </Pie>
                     <text
