@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
 import Card from './Card';
-
+import Icon from './Icon';
 
 type InvestimentosListProps = {
   investimentos: any[];
@@ -21,9 +21,7 @@ export default function InvestimentosList({
       {/* Header */}
       <div className='flex items-center gap-4 '>
         {/* Icone */}
-        <div className="bg-[#F4F7FE] rounded-full p-1 w-12 h-12 flex items-center justify-center">
-          <Image src={IconMoneybag} alt="Icone de uma bolsa de dinheiro" className="w-7 h-7" />
-        </div>
+        <Icon icon={IconMoneybag} alt="Icone de uma bolsa de dinheiro" />
         {/* Titulo */}
         <h2 className="title-block">
           Investimentos
