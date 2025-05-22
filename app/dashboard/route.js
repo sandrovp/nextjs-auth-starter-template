@@ -1,13 +1,21 @@
-// Antes de inserir um novo usuário, verifique se ele já existe
-const usuarioExistente = await db.query(
-  'SELECT * FROM usuarios WHERE id_clerk = $1',
-  [userId]
-);
-
-// Se o usuário não existir, então insira
-if (usuarioExistente.rows.length === 0) {
-  await db.query(
-    'INSERT INTO usuarios (id_clerk, nome, email) VALUES ($1, $2, $3) ON CONFLICT (id_clerk) DO NOTHING',
-    [userId, userName, userEmail]
+try {
+  // Primeiro, verifique se o usuário já existe
+  const checkUser = await db.query(
+    'SELECT id FROM usuarios WHERE id_clerk = $1',
+    [userId]
   );
+  
+  if (checkUser.rows.length === 0) {
+    // Usuário não existe, então insira
+    await db.query(
+      'INSERT INTO usuarios (id_clerk, nome, email) VALUES ($1, $2, $3)',
+      [userId, userName, userEmail]
+    );
+    console.log('Usuário inserido com sucesso');
+  } else {
+    console.log('Usuário já existe, pulando inserção');
+  }
+} catch (error) {
+  console.error('Erro ao verificar/inserir usuário:', error);
+  // Não deixe o erro interromper o fluxo da aplicação
 } 
