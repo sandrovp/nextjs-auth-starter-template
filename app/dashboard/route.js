@@ -1,7 +1,7 @@
 // Importe os módulos necessários
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/db'; // Ajuste o caminho conforme necessário
-import { auth } from '@clerk/nextjs';
+import { db } from '../../lib/db'; // Caminho relativo em vez de alias
+import { auth, clerkClient } from '@clerk/nextjs';
 
 // Função para lidar com requisições GET
 export async function GET() {
