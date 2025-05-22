@@ -1,7 +1,15 @@
 // Importe os módulos necessários
 import { NextResponse } from 'next/server';
-import { db } from '../../lib/db'; // Caminho relativo em vez de alias
 import { auth, clerkClient } from '@clerk/nextjs';
+import { Pool } from 'pg';
+
+// Configuração da conexão com o banco de dados
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 // Função para lidar com requisições GET
 export async function GET() {
