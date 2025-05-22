@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from 'next/font/google';
+import { Sidebar } from "./components/Sidebar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clerk-next-app.vercel.app/"),
@@ -53,8 +54,11 @@ export default function RootLayout({
           },
         }}
       >
-        <body className={`min-h-screen flex flex-col antialiased bg-gray-400`}>
-          {children}
+        <body className="flex antialiased h-screen w-full m-0 overflow-hidden">
+          <Sidebar />
+          <div className="flex-1 overflow-auto h-screen bg-fundo-nav">
+            {children}
+          </div>
         </body>
       </ClerkProvider>
 

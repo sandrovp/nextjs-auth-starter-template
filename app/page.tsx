@@ -1,6 +1,5 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { Sidebar } from "./components/Sidebar";
 import { Content } from "./components/Content";
 
 export default async function Home() {
@@ -13,9 +12,7 @@ export default async function Home() {
   const user = await currentUser();
 
   return (
-    <div className="flex min-h-screen h-full bg-gray-600">
-      <Sidebar />
-      <Content user={user} />
-    </div>
+
+    <Content user={user} />
   );
 }

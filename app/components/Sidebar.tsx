@@ -15,7 +15,7 @@ export function Sidebar() {
   if (!user) return null;
 
   return (
-    <div className="flex flex-col gap-6 bg-cor-fundo-nav p-6 w-[290px] h-full">
+    <div className="flex flex-col gap-6 bg-cor-fundo-nav p-6 w-[290px] h-screen sticky top-0">
       {/* Logo */}
       <div className="w-32 mb-4">
         <Image src={logo} alt="Logo Valore" />
@@ -34,7 +34,7 @@ export function Sidebar() {
       <div className="h-[1px] bg-gray-600 mt-4"></div>
 
       {/* Dados do Usuário */}
-      <div className="mt-auto text-sm text-white">
+      <div className="text-sm text-white">
         <p className="font-semibold">
           {user?.firstName} {user?.lastName}
         </p>
