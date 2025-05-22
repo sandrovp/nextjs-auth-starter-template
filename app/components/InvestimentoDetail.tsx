@@ -27,12 +27,12 @@ export default function InvestimentoDetail({ investimento }: InvestimentoDetailP
         </div>
       </div>
 
-      {/* Histórico de Aportes */}
+      {/* Histórico de Aportes Realizados */}
       <div>
         <h3 className="text-md font-inter font-semibold mb-2">Histórico de Aportes</h3>
         <div className="bg-gray-50 rounded p-4">
-          {investimento.aportes.length === 0 ? (
-            <p className="text-sm font-inter font-normal text-gray-500">Nenhum aporte encontrado.</p>
+          {investimento.aportes.filter((a: any) => a.status === 'realizado').length === 0 ? (
+            <p className="text-sm font-inter font-normal text-gray-500">Nenhum aporte realizado encontrado.</p>
           ) : (
             <table className="w-full">
               <thead className="text-[14px] p-2 font-inter font-black text-gray-400">
@@ -42,16 +42,51 @@ export default function InvestimentoDetail({ investimento }: InvestimentoDetailP
                 </tr>
               </thead>
               <tbody className="text-sm font-inter font-medium text-[#061B2E]">
-                {investimento.aportes.map((a: any) => (
-                  <tr key={a.id} className="border-b">
-                    <td className="p-2">
-                      {new Date(a.data_aporte).toLocaleDateString('pt-BR')}
-                    </td>
-                    <td className="p-2">
-                      R$ {Number(a.valor_aporte).toLocaleString('pt-BR')}
-                    </td>
-                  </tr>
-                ))}
+                {investimento.aportes
+                  .filter((a: any) => a.status === 'realizado')
+                  .map((a: any) => (
+                    <tr key={a.id} className="border-b">
+                      <td className="p-2">
+                        {new Date(a.data_aporte).toLocaleDateString('pt-BR')}
+                      </td>
+                      <td className="p-2">
+                        R$ {Number(a.valor_aporte).toLocaleString('pt-BR')}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
+
+      {/* Histórico de Aportes Previstos */}
+      <div className="mt-4">
+        <h3 className="text-md font-inter font-semibold mb-2">Aportes Previstos</h3>
+        <div className="bg-gray-50 rounded p-4">
+          {investimento.aportes.filter((a: any) => a.status === 'previsto').length === 0 ? (
+            <p className="text-sm font-inter font-normal text-gray-500">Nenhum aporte previsto encontrado.</p>
+          ) : (
+            <table className="w-full">
+              <thead className="text-[14px] p-2 font-inter font-black text-gray-400">
+                <tr>
+                  <th className="text-left p-2">DATA</th>
+                  <th className="text-left p-2">VALOR</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm font-inter font-medium text-[#061B2E]">
+                {investimento.aportes
+                  .filter((a: any) => a.status === 'previsto')
+                  .map((a: any) => (
+                    <tr key={a.id} className="border-b">
+                      <td className="p-2">
+                        {new Date(a.data_aporte).toLocaleDateString('pt-BR')}
+                      </td>
+                      <td className="p-2">
+                        R$ {Number(a.valor_aporte).toLocaleString('pt-BR')}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           )}

@@ -40,7 +40,6 @@ export default function InvestimentosDonutChart({ data }: Props) {
                     >
                         {chartData.map((_, index) => (
                             <Cell key={`cell-${index}`} fill={[
-                                '#081B2F',
                                 '#4A6886',
                                 '#6B89A7',
                                 '#8FABC9',
