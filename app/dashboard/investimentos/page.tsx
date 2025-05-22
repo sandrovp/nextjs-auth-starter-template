@@ -39,7 +39,7 @@ export default async function InvestimentosPage() {
   );
 
   return (
-    <div className="flex flex-col gap-6 bg-cor-fundo-content p-10  h-full">
+    <div className="flex flex-col gap-6 bg-cor-fundo-content p-10 h-screen">
       {/* Título da página */}
       <h1 className="text-5xl font-bold font-poppins m-0 text-[#081B2F]">
         Esta é sua Carteira V.E. Real Estate

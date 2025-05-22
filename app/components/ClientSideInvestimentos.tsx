@@ -13,7 +13,7 @@ export default function ClientSideInvestimentos({ investimentos }: { investiment
   const selectedInvestimento = investimentos.find((i) => i.id === selectedId);
 
   return (
-    <div className='flex flex-col gap-6'>
+    <div className='flex flex-col gap-6 h-full'>
       <div className='flex gap-6'>
         <InvestimentosDonutChart data={investimentos} />
         <Card>Segunda Coluna</Card>
