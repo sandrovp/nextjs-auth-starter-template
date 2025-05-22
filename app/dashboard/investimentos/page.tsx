@@ -4,9 +4,8 @@ import { getOrCreateUser } from "@/lib/supabase/user";
 import { getOrCreateCarteiras } from "@/lib/supabase/carteira";
 import { getInvestimentos } from '@/lib/supabase/investimento';
 import { getAportesByInvestimento } from '@/lib/supabase/aportes';
-import InvestimentosList from '@/app/components/InvestimentosList';
-import InvestimentoDetail from '@/app/components/InvestimentoDetail';
 import ClientSideInvestimentos from '@/app/components/ClientSideInvestimentos';
+import Dashboard from "@/app/components/Dashboard";
 
 export default async function InvestimentosPage() {
   const { userId } = await auth();
@@ -40,8 +39,18 @@ export default async function InvestimentosPage() {
   );
 
   return (
-    <div className="flex gap-4 p-8">
+    <div className="flex flex-col gap-6 bg-cor-fundo-content p-10  h-full">
+      {/* Título da página */}
+      <h1 className="text-5xl font-bold font-poppins m-0 text-[#081B2F]">
+        Esta é sua Carteira V.E. Real Estate
+      </h1>
+      <h2 className="text-[#707EAE] text-2xl font-poppins m-0 font-medium">
+        Acompanhe seus aportes, evolução e previsões de forma centralizada
+      </h2>
+
+      {/* Lista de investimentos */}
       <ClientSideInvestimentos investimentos={investimentosComAportes} />
+
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { Sidebar } from "./components/Sidebar";
 
 export const metadata: Metadata = {
@@ -30,13 +31,18 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: "--font-inter",
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${inter.variable}`}>
       <ClerkProvider
         appearance={{
           variables: { colorPrimary: "#000000" },
@@ -54,7 +60,7 @@ export default function RootLayout({
           },
         }}
       >
-        <body className="flex antialiased h-screen w-full m-0 overflow-hidden">
+        <body className="flex antialiased h-screen w-screen m-0 overflow-hidden">
           <Sidebar />
           <div className="flex-1 overflow-auto h-screen bg-fundo-nav">
             {children}

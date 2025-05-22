@@ -111,3 +111,12 @@
   --variable-collection-gap-se-o: 32px;
   --variable-collection-padding-se-o: 32px;
 }
+
+@layer components {
+  .title-block {
+    @apply text-2xl font-semibold font-inter text-[#061B2E] m-0;
+  }
+  .title-block-white {
+    @apply text-2xl font-semibold font-inter text-white m-0;
+  }
+}

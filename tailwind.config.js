@@ -34,6 +34,7 @@ module.exports = {
         sans: ['var(--font-geist-sans)', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
         poppins: ['var(--font-poppins)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
 
         // Fontes vindas do Figma/Anima
         'tipography-label': 'var(--tipography-label-font-family)',

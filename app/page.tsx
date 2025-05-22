@@ -9,10 +9,6 @@ export default async function Home() {
     redirect("/sign-in"); // 🔐 Redireciona para login se não estiver autenticado
   }
 
-  const user = await currentUser();
-
-  return (
-
-    <Content user={user} />
-  );
+  // Redirect authenticated users to the dashboard
+  redirect("/dashboard/investimentos");
 }
