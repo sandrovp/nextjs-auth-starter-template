@@ -6,6 +6,7 @@ import InvestimentoDetail from './InvestimentoDetail';
 import InvestimentosDonutChart from './InvestimentosDonutChart';
 import Card from './Card';
 import InvestimentosAportesPrevistos from './InvestimentosAportesPrevistos';
+import UltimoAporte from './InvestimentosUltimoAporte';
 export default function ClientSideInvestimentos({ investimentos }: { investimentos: any[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(
     investimentos[0]?.id || null
@@ -20,7 +21,7 @@ export default function ClientSideInvestimentos({ investimentos }: { investiment
         <div className='flex flex-col gap-6 w-full h-full'>
         <div className='flex gap-6 w-full h-full '>
             <InvestimentosAportesPrevistos idCarteira={investimentos[0]?.id_carteira || ''} />
-          <Card>Segunda Coluna</Card>
+            <UltimoAporte idCarteira={investimentos[0]?.id_carteira || ''} />
         </div>
         <div className='flex gap-6 w-full h-full '>
           <Card>Segunda Coluna</Card>
