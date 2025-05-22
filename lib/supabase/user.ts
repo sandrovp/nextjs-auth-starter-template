@@ -7,11 +7,11 @@ type ClerkUser = {
   emailAddresses: { emailAddress: string }[];
 };
 
-export async function getOrCreateUser(clerkUser: ClerkUser) {
+export async function getOrCreateUser(userInfo: { id: string; email?: string }) {
   const { data: usuarioExistente } = await supabase
     .from("usuarios")
     .select("*")
-    .eq("id_clerk", clerkUser.id)
+    .eq("id_clerk", userInfo.id)
     .single();
 
   if (usuarioExistente) return usuarioExistente;
@@ -19,9 +19,9 @@ export async function getOrCreateUser(clerkUser: ClerkUser) {
   const { data: novoUsuario, error } = await supabase
     .from("usuarios")
     .insert({
-      id_clerk: clerkUser.id,
-      nome: `${clerkUser.firstName ?? ""} ${clerkUser.lastName ?? ""}`,
-      email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
+      id_clerk: userInfo.id,
+      nome: "",
+      email: userInfo.email ?? "",
       telefone: "",
     })
     .select()
