@@ -25,6 +25,9 @@ export default async function InvestimentosPage() {
 
   const investimentos = await getInvestimentos(carteira.id);
 
+  // 👉 flag de sucesso: há pelo menos 1 investimento retornado?
+  const dadosCarregadosComSucesso = Boolean(investimentos?.length);
+
   const investimentosComAportes = await Promise.all(
     investimentos.map(async (inv) => {
       const aportes = await getAportesByInvestimento(inv.id);
@@ -40,6 +43,19 @@ export default async function InvestimentosPage() {
 
   return (
     <div className="flex flex-col gap-6 bg-cor-fundo-content p-10 h-screen">
+      {/* Mensagem de status da busca */}
+      <p
+        className={
+          dadosCarregadosComSucesso
+            ? "text-green-600 font-medium"
+            : "text-red-600 font-medium"
+        }
+      >
+        {dadosCarregadosComSucesso
+          ? "Dados carregados com sucesso."
+          : "Nenhum investimento encontrado."}
+      </p>
+
       {/* Título da página */}
       <h1 className="text-5xl font-bold font-poppins m-0 text-[#081B2F]">
         Esta é sua Carteira V.E. Real Estate
@@ -50,7 +66,6 @@ export default async function InvestimentosPage() {
 
       {/* Lista de investimentos */}
       <ClientSideInvestimentos investimentos={investimentosComAportes} />
-
     </div>
   );
 }
