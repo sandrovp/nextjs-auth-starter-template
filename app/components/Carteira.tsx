@@ -4,13 +4,10 @@ import { useState } from 'react';
 import InvestimentosList from './InvestimentosList';
 import InvestimentoDetail from './InvestimentoDetail';
 import InvestimentosDonutChart from './InvestimentosDonutChart';
-import Card from './Card';
 import InvestimentosAportesPrevistos from './InvestimentosAportesPrevistos';
 import InvestimentosTotalCarteira from './InvestimentosTotalCarteira';
 import InvesttimentosAporteMedio from './InvesttimentosAporteMedio';
 import InvestimentosUltimoAporte from './InvestimentosUltimoAporte';
-import CardContent from './CardContent';
-import IconMoneybag from '@/public/icons/icon_moneybag.svg';
 export default function ClientSideInvestimentos({ investimentos }: { investimentos: any[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(
     investimentos[0]?.id || null
