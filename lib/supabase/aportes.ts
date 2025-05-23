@@ -58,3 +58,18 @@ export async function getUltimoAporte(idCarteira: string) {
 
   return data?.[0];
 }
+
+export async function getAporteMedio(idCarteira: string) {
+  const { data, error } = await supabase
+    .from('aportes')
+    .select('*')
+    .eq('id_carteira', idCarteira)
+    .order('data', { ascending: false })
+    .limit(1);
+
+  if (error) {
+    throw new Error(`Erro ao buscar aporte médio: ${error.message}`);
+  }
+
+  return data?.[0];
+} 

@@ -6,7 +6,9 @@ import InvestimentoDetail from './InvestimentoDetail';
 import InvestimentosDonutChart from './InvestimentosDonutChart';
 import Card from './Card';
 import InvestimentosAportesPrevistos from './InvestimentosAportesPrevistos';
-import UltimoAporte from './InvestimentosUltimoAporte';
+import InvestimentosTotalCarteira from './InvestimentosTotalCarteira';
+import InvesttimentosAporteMedio from './InvesttimentosAporteMedio';
+import InvestimentosUltimoAporte from './InvestimentosUltimoAporte';
 import CardContent from './CardContent';
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
 export default function ClientSideInvestimentos({ investimentos }: { investimentos: any[] }) {
@@ -21,22 +23,14 @@ export default function ClientSideInvestimentos({ investimentos }: { investiment
       <div className='flex gap-6'>
         <InvestimentosDonutChart data={investimentos} />
         <div className='flex flex-col gap-6 w-full h-full'>
-        <div className='flex gap-6 w-full h-full '>
+          <div className='flex gap-6 w-full h-full '>
             <InvestimentosAportesPrevistos idCarteira={investimentos[0]?.id_carteira || ''} />
-            <UltimoAporte idCarteira={investimentos[0]?.id_carteira || ''} />
-        </div>
-        <div className='flex gap-6 w-full h-full '>
-          <Card>
-            <CardContent
-              title="Total Investido"
-              icon={IconMoneybag}
-              value={Number(investimentos.reduce((acc, inv) => acc + inv.valor_investido, 0)).toLocaleString('pt-BR')}
-              date={null}
-              isLoading={false}
-            />  
-          </Card>
-          <Card>Segunda Coluna</Card>
-        </div>
+            <InvestimentosUltimoAporte idCarteira={investimentos[0]?.id_carteira || ''} />
+          </div>
+          <div className='flex gap-6 w-full h-full '>
+            <InvestimentosTotalCarteira idCarteira={investimentos[0]?.id_carteira || ''} />
+            <InvesttimentosAporteMedio idCarteira={investimentos[0]?.id_carteira || ''} />
+          </div>
         </div>
       </div>
       <div className='flex gap-6'>

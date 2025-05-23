@@ -2,34 +2,30 @@
 
 import { useState, useEffect } from 'react';
 import Card from './Card';
-import { getUltimoAporte } from '@/lib/supabase/aportes';
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
-import IconHouses from '@/public/icons/icon_houses.svg';
 import CardContent from './CardContent';
-import Icon from './Icon';
+import { getOrCreateCarteiras } from '@/lib/supabase/carteira';     
 interface Props {
     idCarteira: string;
 }
 
-export default function InvestimentosUltimoAporte({ idCarteira }: Props) {
-
-    const [ultimoAporte, setUltimoAporte] = useState<any>(null);
-    const [dataUltimoAporte, setDataUltimoAporte] = useState<string | null>(null);
+export default function InvestimentosTotalCarteira({ idCarteira }: Props) {
+            
+    const [totalAportes, setTotalAportes] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const ultimoAporte = await getUltimoAporte(idCarteira);
-                setUltimoAporte(ultimoAporte?.valor_previsto || 0);
-                setDataUltimoAporte(ultimoAporte?.data ? new Date(ultimoAporte.data).toLocaleDateString('pt-BR') : null);
+                const carteiras = await getOrCreateCarteiras(idCarteira);
+                setTotalAportes(carteiras[0]?.saldo_total || 0);
             } catch (error) {
-                console.error("Erro ao buscar último aporte:", error);
+                console.error("Erro ao buscar saldo total:", error);
+                setTotalAportes(0);
             } finally {
                 setIsLoading(false);
             }
         };
-
         fetchData();
     }, [idCarteira]);
 
@@ -46,10 +42,10 @@ export default function InvestimentosUltimoAporte({ idCarteira }: Props) {
     return (
         <Card className=" justify-center">
             <CardContent
-                title="Último aporte"
+                title="Total Investido"
                 icon={IconMoneybag}
-                value={ultimoAporte !== null ? formatCurrency(ultimoAporte) : "Sem aportes"}
-                date={dataUltimoAporte}
+                value={totalAportes !== null ? formatCurrency(totalAportes) : "Sem aportes"}
+                date={null}
                 isLoading={isLoading}
             />
         </Card>

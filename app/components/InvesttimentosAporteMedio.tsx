@@ -2,29 +2,27 @@
 
 import { useState, useEffect } from 'react';
 import Card from './Card';
-import { getUltimoAporte } from '@/lib/supabase/aportes';
+import { getAporteMedio } from '@/lib/supabase/aportes';
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
-import IconHouses from '@/public/icons/icon_houses.svg';
 import CardContent from './CardContent';
-import Icon from './Icon';
 interface Props {
     idCarteira: string;
 }
 
-export default function InvestimentosUltimoAporte({ idCarteira }: Props) {
+export default function InvesttimentosAporteMedio({ idCarteira }: Props) {
 
-    const [ultimoAporte, setUltimoAporte] = useState<any>(null);
-    const [dataUltimoAporte, setDataUltimoAporte] = useState<string | null>(null);
+    const [aporteMedio, setAporteMedio] = useState<any>(null);
+    const [dataAporteMedio, setDataAporteMedio] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const ultimoAporte = await getUltimoAporte(idCarteira);
-                setUltimoAporte(ultimoAporte?.valor_previsto || 0);
-                setDataUltimoAporte(ultimoAporte?.data ? new Date(ultimoAporte.data).toLocaleDateString('pt-BR') : null);
+                const aporteMedio = await getAporteMedio(idCarteira);
+                setAporteMedio(aporteMedio?.valor_previsto || 0);
+                setDataAporteMedio(aporteMedio?.data ? new Date(aporteMedio.data).toLocaleDateString('pt-BR') : null);
             } catch (error) {
-                console.error("Erro ao buscar último aporte:", error);
+                console.error("Erro ao buscar aporte médio:", error);
             } finally {
                 setIsLoading(false);
             }
@@ -46,10 +44,10 @@ export default function InvestimentosUltimoAporte({ idCarteira }: Props) {
     return (
         <Card className=" justify-center">
             <CardContent
-                title="Último aporte"
+                title="Aporte médio"
                 icon={IconMoneybag}
-                value={ultimoAporte !== null ? formatCurrency(ultimoAporte) : "Sem aportes"}
-                date={dataUltimoAporte}
+                value={aporteMedio !== null ? formatCurrency(aporteMedio) : "Sem aportes"}
+                date={dataAporteMedio}
                 isLoading={isLoading}
             />
         </Card>
