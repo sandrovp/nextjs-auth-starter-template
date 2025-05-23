@@ -2,6 +2,7 @@
 
 import { useUser, SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
+import { getOrCreateUser } from "@/lib/supabase/user";
 import { getOrCreateCarteiras } from "@/lib/supabase/carteira";
 import { useEffect, useState } from "react";
 
@@ -16,7 +17,15 @@ export default function UserProfile() {
 
     async function carregarCarteiras() {
       if (!user) return;
-      const carteiras = await getOrCreateCarteiras(user.id);
+      
+      // First get or create the user in Supabase to get the Supabase user ID
+      const supabaseUser = await getOrCreateUser({
+        id: user.id,
+        email: user.emailAddresses?.[0]?.emailAddress
+      });
+      
+      // Then use the Supabase user ID to get the carteiras
+      const carteiras = await getOrCreateCarteiras(supabaseUser.id);
       setCarteiras(carteiras);
     }
 
