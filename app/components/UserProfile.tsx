@@ -2,10 +2,26 @@
 
 import { useUser, SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
+import { getOrCreateCarteiras } from "@/lib/supabase/carteira";
+import { useEffect, useState } from "react";
 
 export default function UserProfile() {
   const { user } = useUser();
   if (!user) return null;
+
+  const [carteiras, setCarteiras] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    async function carregarCarteiras() {
+      if (!user) return;
+      const carteiras = await getOrCreateCarteiras(user.id);
+      setCarteiras(carteiras);
+    }
+
+    carregarCarteiras();
+  }, [user]);
 
   return (
     <div className="text-sm text-white">
@@ -26,6 +42,17 @@ export default function UserProfile() {
           <p className="text-gray-400 font-inter">
             {user.emailAddresses?.[0]?.emailAddress}
           </p>
+
+          <div className="font-inter text-gray-400 text-xs">
+            {user.id}
+            {carteiras.length > 0 ? (
+              carteiras.map((carteira) => (
+                <p key={carteira.id}>{carteira.nome_carteira}</p>
+              ))
+            ) : (
+              <p className=" font-inter text-gray-400">Nenhuma carteira encontrada</p>
+            )}
+          </div>
         </div>
       </div>
 
