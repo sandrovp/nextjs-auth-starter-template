@@ -43,3 +43,18 @@ export async function getAportesByCarteira(idCarteira: string) {
 
   return aportes || [];
 }
+
+export async function getUltimoAporte(idCarteira: string) {
+  const { data, error } = await supabase
+    .from('aportes')
+    .select('*')
+    .eq('id_carteira', idCarteira)
+    .order('data', { ascending: false })
+    .limit(1);
+
+  if (error) {
+    throw new Error(`Erro ao buscar último aporte: ${error.message}`);
+  }
+
+  return data?.[0];
+}

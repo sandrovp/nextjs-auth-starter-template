@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Card from './Card';
-import { getAportesByCarteira } from '@/lib/supabase/aportes';
+import { getUltimoAporte } from '@/lib/supabase/aportes';
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
 import IconHouses from '@/public/icons/icon_houses.svg';
 import CardContent from './CardContent';
@@ -12,36 +12,25 @@ interface Props {
 }
 
 export default function UltimoAporteCard({ idCarteira }: Props) {
-    const [ultimoAporte, setUltimoAporte] = useState<number | null>(null);
+
+    const [ultimoAporte, setUltimoAporte] = useState<any>(null);
     const [dataUltimoAporte, setDataUltimoAporte] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        async function carregarAportes() {
+        const fetchData = async () => {
             try {
-                setIsLoading(true);
-                const aportes = await getAportesByCarteira(idCarteira);
-
-                // Ordenar aportes por data (assumindo que existe um campo data)
-                const aportesOrdenados = aportes.sort((a, b) =>
-                    new Date(b.data || 0).getTime() - new Date(a.data || 0).getTime()
-                );
-
-                // Pegar o último aporte (mais recente)
-                const ultimo = aportesOrdenados.length > 0 ? aportesOrdenados[0] : null;
-
-                if (ultimo) {
-                    setUltimoAporte(ultimo.valor_previsto || 0);
-                    setDataUltimoAporte(ultimo.data ? new Date(ultimo.data).toLocaleDateString('pt-BR') : null);
-                }
+                const ultimoAporte = await getUltimoAporte(idCarteira);
+                setUltimoAporte(ultimoAporte?.valor_previsto || 0);
+                setDataUltimoAporte(ultimoAporte?.data ? new Date(ultimoAporte.data).toLocaleDateString('pt-BR') : null);
             } catch (error) {
-                console.error("Erro ao carregar último aporte:", error);
+                console.error("Erro ao buscar último aporte:", error);
             } finally {
                 setIsLoading(false);
             }
-        }
+        };
 
-        carregarAportes();
+        fetchData();
     }, [idCarteira]);
 
     const formatCurrency = (value: number) => {
@@ -56,7 +45,7 @@ export default function UltimoAporteCard({ idCarteira }: Props) {
 
     return (
         <Card className=" justify-center">
-            <CardContent    
+            <CardContent
                 title="Último aporte"
                 icon={IconMoneybag}
                 value={ultimoAporte !== null ? formatCurrency(ultimoAporte) : "Sem aportes"}
