@@ -2,7 +2,6 @@ import { Calendar, Home, Inbox, Search, Settings, LogOut } from "lucide-react"; 
 import logo from "@/public/logos/logo_valore.png";
 import Link from "next/link";
 import { SidebarSeparator } from "@/app/components/ui/sidebar";
-import { SignOutButton } from "@clerk/nextjs";
 import UserProfile from "./UserProfile";
 
 import {
