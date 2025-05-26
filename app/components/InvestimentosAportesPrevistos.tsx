@@ -2,17 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getAportesByCarteira } from '@/lib/supabase/aportes';
-import IconHouses from '@/public/icons/icon_houses.svg';
-import Icon from './Icon';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "./card";
-
+import { Card, CardHeader, CardDescription, CardTitle } from "./card";
 
 interface Props {
     idCarteira: string;
