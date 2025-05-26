@@ -47,16 +47,14 @@ export function AppSidebar() {
           <img src={logo.src} alt="Logo" className="h-13 w-auto" />
         </Link>
         <SidebarSeparator />
-        <SidebarGroup className="pt-6 ">
-          {/* <SidebarGroupLabel>Application</SidebarGroupLabel> */}
+        <SidebarGroup className="pt-6 justify-between h-screen">
           <SidebarGroupContent>
-            <SidebarMenu className="gap-3">
+            <SidebarMenu className="gap-3 ">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    className="text-light font-inter font-medium gap-4"
-                  >
+                    className="text-light font-inter font-medium gap-4">
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -64,6 +62,10 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+            </SidebarGroupContent>
+            <SidebarGroupContent>
+            <SidebarMenu className="gap-3">
               <SidebarMenuItem>
                 <UserProfile />
               </SidebarMenuItem>
@@ -71,6 +73,6 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-    </Sidebar>
+    </Sidebar >
   );
 }
