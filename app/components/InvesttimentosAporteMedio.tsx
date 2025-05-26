@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, CardHeader, CardDescription, CardTitle } from "./card";
+import { Card, CardHeader, CardDescription, CardTitle } from "../components/card";
 import { getAporteMedio } from '@/lib/supabase/aportes';
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
 import CardContent from './CardContent';

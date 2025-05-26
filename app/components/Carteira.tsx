@@ -21,7 +21,7 @@ export default function Carteira({ investimentos }: { investimentos: any[] }) {
     <div className="flex flex-1 flex-col">
 
       {/* Parte superior */}
-      <div className="@container/main flex flex-1 flex-row gap-4 py-4" >
+      <div className="@container/main flex flex-1 flex-col md:flex-row gap-4 py-4" >
         {/* Gráfico na esquerda */}
         <div className="flex w-1/2">
           <InvestimentosDonutChart data={investimentos} />

@@ -1,5 +1,5 @@
 import Card_old from "./Card_old";
-import { Card, CardHeader, CardDescription, CardTitle } from "./card";
+import { Card, CardHeader, CardDescription, CardTitle } from "../components/card";
 import {
   Table,
   TableBody,
