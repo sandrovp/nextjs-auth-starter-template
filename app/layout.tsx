@@ -5,9 +5,9 @@ import { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from 'next/font/google';
 import { Inter } from 'next/font/google';
-import { Sidebar } from "./components/Sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/app/components/ui/sidebar"
 import { AppSidebar } from "./components/app-sidebar";
+import logo from "@/public/logos/logo_valore.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clerk-next-app.vercel.app/"),
@@ -47,6 +47,9 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${inter.variable}`}>
       <ClerkProvider
         appearance={{
+          layout: {
+            logoImageUrl: logo.src,
+          },
           variables: { colorPrimary: "#000000" },
           elements: {
             formButtonPrimary:
