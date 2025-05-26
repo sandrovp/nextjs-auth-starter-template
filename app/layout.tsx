@@ -6,6 +6,8 @@ import localFont from "next/font/local";
 import { Poppins } from 'next/font/google';
 import { Inter } from 'next/font/google';
 import { Sidebar } from "./components/Sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/app/components/ui/sidebar"
+import { AppSidebar } from "./components/app-sidebar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clerk-next-app.vercel.app/"),
@@ -61,10 +63,13 @@ export default function RootLayout({
         }}
       >
         <body className="flex antialiased h-screen w-screen m-0 overflow-hidden">
-          <Sidebar />
-          <div className="flex-1 overflow-auto h-screen bg-fundo-nav">
-            {children}
-          </div>
+          <SidebarProvider>
+            <AppSidebar />
+            <main>
+              <SidebarTrigger />
+              {children}
+            </main>
+          </SidebarProvider>
         </body>
       </ClerkProvider>
 
