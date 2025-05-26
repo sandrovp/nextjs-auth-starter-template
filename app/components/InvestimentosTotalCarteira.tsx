@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Card from './Card';
+import { Card, CardHeader, CardDescription, CardTitle } from "./card";
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
 import CardContent from './CardContent';
 import { getOrCreateCarteiras } from '@/lib/supabase/carteira';     
@@ -40,14 +40,30 @@ export default function InvestimentosTotalCarteira({ idCarteira }: Props) {
     };
 
     return (
-        <Card className=" justify-center">
-            <CardContent
-                title="Total Investido"
-                icon={IconMoneybag}
-                value={totalAportes !== null ? formatCurrency(totalAportes) : "Sem aportes"}
-                date={null}
-                isLoading={isLoading}
-            />
-        </Card>
+        // <Card_old className=" justify-center">
+        //     <CardContent
+        //         title="Total Investido"
+        //         icon={IconMoneybag}
+        //         value={totalAportes !== null ? formatCurrency(totalAportes) : "Sem aportes"}
+        //         date={null}
+        //         isLoading={isLoading}
+        //     />
+        // </Card_old>
+        <Card className="@container/card">
+        <CardHeader className="relative">
+            <CardDescription>Total Investido</CardDescription>
+            <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
+                {isLoading ? (
+                    <div className="animate-pulse h-8 w-24 bg-gray-200 rounded"></div>
+                ) : (
+                    <>
+                        <p>
+                            {totalAportes !== null ? formatCurrency(totalAportes) : "Sem aportes"}
+                        </p>
+                    </>
+                )}
+            </CardTitle>
+        </CardHeader>
+    </Card>
     );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import Card from './Card';
+import Card_old from './Card_old';
 type Investimento = {
     id: string;
     nome_ativo: string;
@@ -23,7 +23,7 @@ export default function InvestimentosDonutChart({ data }: Props) {
     }));
 
     return (
-        <Card>
+        <Card_old>
             <h2 className="title-block">Total de Investimentos Assinados</h2>
             <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
@@ -90,6 +90,6 @@ export default function InvestimentosDonutChart({ data }: Props) {
             </ResponsiveContainer>
 
             
-        </Card>
+        </Card_old>
     );
 }

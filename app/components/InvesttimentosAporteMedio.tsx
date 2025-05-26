@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Card from './Card';
+import { Card, CardHeader, CardDescription, CardTitle } from "./card";
 import { getAporteMedio } from '@/lib/supabase/aportes';
 import IconMoneybag from '@/public/icons/icon_moneybag.svg';
 import CardContent from './CardContent';
@@ -42,14 +42,21 @@ export default function InvesttimentosAporteMedio({ idCarteira }: Props) {
     };
 
     return (
-        <Card className=" justify-center">
-            <CardContent
-                title="Aporte médio"
-                icon={IconMoneybag}
-                value={aporteMedio !== null ? formatCurrency(aporteMedio) : "Sem aportes"}
-                date={dataAporteMedio}
-                isLoading={isLoading}
-            />
-        </Card>
+        <Card className="@container/card">
+        <CardHeader className="relative">
+            <CardDescription>Último aporte</CardDescription>
+            <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
+                {isLoading ? (
+                    <div className="animate-pulse h-8 w-24 bg-gray-200 rounded"></div>
+                ) : (
+                    <>
+                        <p>
+                            {aporteMedio !== null ? formatCurrency(aporteMedio) : "Sem aportes"}
+                        </p>
+                    </>
+                )}
+            </CardTitle>
+        </CardHeader>
+    </Card>
     );
 }

@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card_old from "./Card_old";
 
 type InvestimentoDetailProps = {
   investimento: any;
@@ -14,7 +14,7 @@ export default function InvestimentoDetail({ investimento }: InvestimentoDetailP
   }
 
   return (
-    <Card>
+    <Card_old>
       {/* Header */}
       <div className="flex gap-2 w-full justify-between">
         <div className="flex justify-center items-center bg-[#081B2F] text-white rounded-lg p-4 flex-1">
@@ -92,6 +92,6 @@ export default function InvestimentoDetail({ investimento }: InvestimentoDetailP
           )}
         </div>
       </div>
-    </Card>
+    </Card_old>
   );
 }

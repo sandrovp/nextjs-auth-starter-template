@@ -24,8 +24,6 @@ export default async function Investimentos() {
 
   const investimentos = await getInvestimentos(carteira.id);
 
-  const dadosCarregadosComSucesso = Boolean(investimentos?.length);
-
   const investimentosComAportes = await Promise.all(
     investimentos.map(async (inv) => {
       const aportes = await getAportesByInvestimento(inv.id);
@@ -41,17 +39,6 @@ export default async function Investimentos() {
 
   return (
     <div className="flex flex-col gap-6 bg-cor-fundo-content p-10 h-screen">
-      {/* <p
-        className={
-          dadosCarregadosComSucesso
-            ? "text-green-600 font-medium"
-            : "text-red-600 font-medium"
-        }
-      >
-        {dadosCarregadosComSucesso
-          ? "Dados carregados com sucesso."
-          : "Nenhum investimento encontrado."}
-      </p> */}
 
       <h1 className="text-5xl font-bold font-poppins m-0 text-[#081B2F]">
         Esta é sua Carteira V.E. Real Estate

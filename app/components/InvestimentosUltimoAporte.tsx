@@ -1,12 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Card from './Card';
 import { getUltimoAporte } from '@/lib/supabase/aportes';
-import IconMoneybag from '@/public/icons/icon_moneybag.svg';
-import IconHouses from '@/public/icons/icon_houses.svg';
-import CardContent from './CardContent';
-import Icon from './Icon';
+import { Card, CardHeader, CardDescription, CardTitle } from "./card";
 interface Props {
     idCarteira: string;
 }
@@ -44,14 +40,21 @@ export default function InvestimentosUltimoAporte({ idCarteira }: Props) {
     };
 
     return (
-        <Card className=" justify-center">
-            <CardContent
-                title="Último aporte"
-                icon={IconMoneybag}
-                value={ultimoAporte !== null ? formatCurrency(ultimoAporte) : "Sem aportes"}
-                date={dataUltimoAporte}
-                isLoading={isLoading}
-            />
+        <Card className="@container/card">
+            <CardHeader className="relative">
+                <CardDescription>Último aporte</CardDescription>
+                <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
+                    {isLoading ? (
+                        <div className="animate-pulse h-8 w-24 bg-gray-200 rounded"></div>
+                    ) : (
+                        <>
+                            <p>
+                                {ultimoAporte !== null ? formatCurrency(ultimoAporte) : "Sem aportes"}
+                            </p>
+                        </>
+                    )}
+                </CardTitle>
+            </CardHeader>
         </Card>
     );
 }

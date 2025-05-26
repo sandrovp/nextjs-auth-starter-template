@@ -1,9 +1,8 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { SidebarProvider, SidebarTrigger } from "@/app/components/ui/sidebar"
+import { SidebarProvider, SidebarTrigger } from "@/app/components/ui/sidebar";
 import { AppSidebar } from "./components/app-sidebar";
 import Investimentos from "./components/Investimentos";
-
 
 export default async function Home() {
   const { userId } = await auth();
@@ -14,13 +13,14 @@ export default async function Home() {
 
   return (
     <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <SidebarTrigger className="absolute" />
-        <Investimentos />
-      </main>
+      <div className="flex h-screen w-full overflow-hidden">
+        <AppSidebar />
+        <main className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+
+          <SidebarTrigger className="absolute" />
+          <Investimentos />
+        </main>
+      </div>
     </SidebarProvider>
   );
 }
-
-
