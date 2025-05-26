@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import { Poppins } from 'next/font/google';
 import { Inter } from 'next/font/google';
 import logo from "@/public/logos/logo_valore.png";
+import { ptBR } from "@clerk/localizations";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clerk-next-app.vercel.app/"),
@@ -42,8 +43,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${inter.variable}`}>
+    <html lang="pt-br" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${inter.variable}`}>
       <ClerkProvider
+        localization={ptBR}
         appearance={{
           layout: {
             logoImageUrl: logo.src,
