@@ -3,9 +3,12 @@ import { redirect } from "next/navigation";
 import { Content } from "./components/Content";
 
 export default async function Home() {
-  return (
-    <main className="flex h-screen w-screen flex-col">
-      Teste
-    </main>
-  );
+  const { userId } = await auth();
+
+  if (!userId) {
+    redirect("/sign-in"); // 🔐 Redireciona para login se não estiver autenticado
+  }
+
+  // Redirect authenticated users to the dashboard
+  redirect("/dashboard/investimentos");
 }
