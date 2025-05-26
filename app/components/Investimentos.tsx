@@ -2,12 +2,11 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getOrCreateUser } from "@/lib/supabase/user";
 import { getOrCreateCarteiras } from "@/lib/supabase/carteira";
-import { getInvestimentos } from '@/lib/supabase/investimento';
-import { getAportesByInvestimento } from '@/lib/supabase/aportes';
-import ClientSideInvestimentos from '@/app/components/Carteira';
-import Dashboard from "@/app/components/Dashboard";
+import { getInvestimentos } from "@/lib/supabase/investimento";
+import { getAportesByInvestimento } from "@/lib/supabase/aportes";
+import ClientSideInvestimentos from "@/app/components/Carteira";
 
-export default async function InvestimentosPage() {
+export default async function Investimentos() {
   const { userId } = await auth();
   if (!userId) redirect("/sign-in");
 
@@ -25,7 +24,6 @@ export default async function InvestimentosPage() {
 
   const investimentos = await getInvestimentos(carteira.id);
 
-  // 👉 flag de sucesso: há pelo menos 1 investimento retornado?
   const dadosCarregadosComSucesso = Boolean(investimentos?.length);
 
   const investimentosComAportes = await Promise.all(
@@ -33,9 +31,9 @@ export default async function InvestimentosPage() {
       const aportes = await getAportesByInvestimento(inv.id);
       return {
         ...inv,
-        nome_ativo: inv.ativos_imobiliarios?.nome_ativo || '',
-        localizacao: inv.ativos_imobiliarios?.localizacao || '',
-        tipo_ativo: inv.ativos_imobiliarios?.tipo_ativo || '',
+        nome_ativo: inv.ativos_imobiliarios?.nome_ativo || "",
+        localizacao: inv.ativos_imobiliarios?.localizacao || "",
+        tipo_ativo: inv.ativos_imobiliarios?.tipo_ativo || "",
         aportes: aportes || [],
       };
     })
@@ -43,7 +41,6 @@ export default async function InvestimentosPage() {
 
   return (
     <div className="flex flex-col gap-6 bg-cor-fundo-content p-10 h-screen">
-      {/* Mensagem de status da busca */}
       <p
         className={
           dadosCarregadosComSucesso
@@ -56,7 +53,6 @@ export default async function InvestimentosPage() {
           : "Nenhum investimento encontrado."}
       </p>
 
-      {/* Título da página */}
       <h1 className="text-5xl font-bold font-poppins m-0 text-[#081B2F]">
         Esta é sua Carteira V.E. Real Estate
       </h1>
@@ -64,7 +60,6 @@ export default async function InvestimentosPage() {
         Acompanhe seus aportes, evolução e previsões de forma centralizada
       </h2>
 
-      {/* Lista de investimentos */}
       <ClientSideInvestimentos investimentos={investimentosComAportes} />
     </div>
   );

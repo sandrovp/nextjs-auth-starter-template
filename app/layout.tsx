@@ -5,8 +5,6 @@ import { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from 'next/font/google';
 import { Inter } from 'next/font/google';
-import { SidebarProvider, SidebarTrigger } from "@/app/components/ui/sidebar"
-import { AppSidebar } from "./components/app-sidebar";
 import logo from "@/public/logos/logo_valore.png";
 
 export const metadata: Metadata = {
@@ -66,13 +64,7 @@ export default function RootLayout({
         }}
       >
         <body className="flex antialiased h-screen w-screen m-0 overflow-hidden">
-          <SidebarProvider>
-            <AppSidebar />
-            <main>
-              <SidebarTrigger className="absolute" />
-              {children}
-            </main>
-          </SidebarProvider>
+          {children}
         </body>
       </ClerkProvider>
 
