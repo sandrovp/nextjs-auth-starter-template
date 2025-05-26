@@ -1,5 +1,5 @@
 'use client';
-import { Card, CardHeader, CardDescription, CardTitle } from "../components/card";
+import { Card, CardHeader, CardDescription, CardTitle } from "./Card";
 import {
   Table,
   TableBody,

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getUltimoAporte } from '@/lib/supabase/aportes';
-import { Card, CardHeader, CardDescription, CardTitle } from "../components/card";
+import { Card, CardHeader, CardDescription, CardTitle } from "./Card";
 interface Props {
     idCarteira: string;
 }

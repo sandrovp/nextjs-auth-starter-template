@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardDescription, CardTitle } from "./card";
+import { Card, CardHeader, CardDescription, CardTitle } from "./Card";
 import {
   Table,
   TableBody,
