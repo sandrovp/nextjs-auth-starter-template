@@ -1,5 +1,8 @@
 
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import Image from "next/image";
+import logo from "@/public/logos/logo_valore.png";
+import Link from "next/link";
 
 import {
   Sidebar,
@@ -15,29 +18,24 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Home",
-    url: "#",
+    title: "Carteira",
+    url: "/",
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Portfolio",
     url: "#",
     icon: Inbox,
   },
   {
-    title: "Calendar",
+    title: "Documentos",
     url: "#",
     icon: Calendar,
   },
   {
-    title: "Search",
+    title: "Oportunidades",
     url: "#",
     icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
   },
 ]
 
@@ -45,8 +43,15 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
+      <Link href="/" className="flex justify-center p-8">
+          <img
+            src={logo.src}
+            alt="Logo"
+            className="h-10 w-auto"
+          />
+        </Link>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          {/* <SidebarGroupLabel>Application</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
