@@ -41,7 +41,7 @@ export default async function Investimentos() {
 
   return (
     <div className="flex flex-col gap-6 bg-cor-fundo-content p-10 h-screen">
-      <p
+      {/* <p
         className={
           dadosCarregadosComSucesso
             ? "text-green-600 font-medium"
@@ -51,7 +51,7 @@ export default async function Investimentos() {
         {dadosCarregadosComSucesso
           ? "Dados carregados com sucesso."
           : "Nenhum investimento encontrado."}
-      </p>
+      </p> */}
 
       <h1 className="text-5xl font-bold font-poppins m-0 text-[#081B2F]">
         Esta é sua Carteira V.E. Real Estate
