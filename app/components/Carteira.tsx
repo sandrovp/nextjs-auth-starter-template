@@ -41,15 +41,14 @@ export default function Carteira({ investimentos }: { investimentos: any[] }) {
       {/* Parte inferior */}
       <div className="@container/main flex flex-1 flex-row gap-4 py-4" >
         {/* Lista de investimentos */}
-        <div className="flex w-1/2">
+        <div className="flex w-full">
           <div className="grid grid-cols-1 @xl/main:grid-cols-2 gap-4 w-full">
-
             <InvestimentosList
               investimentos={investimentos}
               selectedId={selectedId}
               onSelect={setSelectedId}
             />
-
+            <InvestimentoDetail investimento={selectedInvestimento} />
           </div>
         </div>
       </div>
